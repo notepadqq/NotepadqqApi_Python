@@ -6,8 +6,7 @@ from notepadqq_api.message_interpreter import MessageInterpreter
 from notepadqq_api.stubs import Stubs
 
 class NotepadqqApi():
-    """Provides access to the Notepadqq Api.
-    """
+    """Provides access to the Notepadqq Api."""
 
     _NQQ_STUB_ID = 1
 
