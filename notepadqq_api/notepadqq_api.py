@@ -66,13 +66,19 @@ class NotepadqqApi():
         """
         captured_windows = []
 
+        # Invoke the callback for every currently open window
         for window in self.notepadqq.windows():
             if window not in captured_windows:
                 captured_windows.append(window)
                 callback(window)
 
+        # Each time a new window gets opened, invoke the callback.
+        # When Notepadqq is starting and initializing all the extensions,
+        # we might not be fast enough to receive this event: this is why
+        # we manually invoked the callback for every currently open window.
         def on_new_window(window):
-            callback(window)
+            if window not in captured_windows:
+                callback(window)
 
         self.notepadqq.on('newWindow', on_new_window)
 
