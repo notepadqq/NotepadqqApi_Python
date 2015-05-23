@@ -82,6 +82,11 @@ class NotepadqqApi():
 
         self.notepadqq.on('newWindow', on_new_window)
 
+    def for_each_window(self, f):
+        """Decorator alternative for self.on_window_created(f)"""
+        self.on_window_created(f)
+        return f
+
     def _on_new_message(self, msg):
         # Called whenever a new message is received from the channel
         self._message_interpreter.process_message(msg)

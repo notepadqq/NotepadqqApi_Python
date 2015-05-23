@@ -5,8 +5,17 @@ class Stubs:
             self._message_interpreter = message_interpreter
             self._object_id = object_id
 
-        def on(self, event, callback):
-            self._message_interpreter.register_event_handler(self._object_id, event, callback)
+        def on(self, event, callback=None):
+            if callback is None:
+                # It's a decorator: @on('eventName')
+                def wrap(f):
+                    self.on(event, f)
+                    return f
+                return wrap
+            else:
+                # It's invoked as a method: attach the event handler
+                self._message_interpreter.register_event_handler(
+                    self._object_id, event, callback)
 
         def __getattr__(self, name):
             def _missing(*args, **kwargs):
