@@ -1,3 +1,5 @@
+"""Remote stubs"""
+
 class Stubs:
     class Stub:
 
@@ -6,6 +8,10 @@ class Stubs:
             self._object_id = object_id
 
         def on(self, event, callback=None):
+            """Set an handler for the specified event on this object.
+               If callback is not provided, it acts as a decorator:
+               `@stub.on('eventName')`
+            """
             if callback is None:
                 # It's a decorator: @on('eventName')
                 def wrap(f):
