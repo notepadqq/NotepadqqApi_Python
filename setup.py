@@ -2,7 +2,7 @@
 
 from distutils.core import setup
 
-setup(name='notepadqqapi',
+setup(name='notepadqq_api',
       version='0.9',
       description='Notepadqq API Layer for extensions',
       author='Daniele Di Sarli',
